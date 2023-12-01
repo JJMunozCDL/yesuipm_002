@@ -1,0 +1,80 @@
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+}
+
+
+/*
+.sapMTextMaxLine {
+    width: 300px;
+}
+.sapMOHTitleDiv{
+	height: 40px;
+}*/
+
+.tileGroupText{
+	color: rgb(255, 255, 255);
+	font-size: 24px;
+	font-weight: normal;
+	text-shadow: 0px 1px #000000;
+}
+
+.formOffset{
+  width: 55% !important;
+  max-width: 420px !important;
+  height: 80%;
+  overflow: auto;
+  margin: auto;
+  margin-top: 350px;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+}
+
+.sapUiBlockCellTitle {
+    font-size: 1.225rem;
+}
+	
+/* media query */
+@media screen and (max-width: 450px) {
+
+        
+    .formOffset{
+	  width: 95% !important;
+	  margin-top: 250px;
+	}
+}
+
+.sapMLIB {
+    padding: 1rem !important;
+}
+
+.sapMILILabel {
+    white-space: initial !important;
+}
+
+.sapMILILabel {
+    max-width: 60% !important; 
+}
+
+
+.ajusteSelectAll {
+   margin-right: 1.2% !important;
+}
+
+
+.iconRotate[data-icon-loading] .sapMNLB-AuthorPicture{
+	display: block !important;
+    -webkit-animation:spin 4s linear infinite;
+    -moz-animation:spin 4s linear infinite;
+    animation:spin 4s linear infinite;
+}
+
+.iconRotate[data-icon-loading] .iconRotate2>div>span:first-child{
+	display: block !important;
+    -webkit-animation:spin 4s linear infinite;
+    -moz-animation:spin 4s linear infinite;
+    animation:spin 4s linear infinite;
+}
+
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }

@@ -1,0 +1,68 @@
+<core:FragmentDefinition
+    xmlns:core="sap.ui.core" 
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:form="sap.ui.layout.form"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Dialog
+		class="sapUiSizeCompact"
+	    title="{i18n>tiempos}">
+	    <form:SimpleForm
+		    layout="ResponsiveGridLayout"
+		    labelSpanL= "4"
+	       	labelSpanM= "4"
+	       	emptySpanL= "0"
+	       	emptySpanM= "0"	
+	       	editable="true">
+		    <form:content>
+			    <Label text="{i18n>fechaInicio}" />
+			    <DatePicker 
+			    	enabled="true"
+			    	dateValue="{viewModel>/FechaInicio}"/>
+		    	<Label text="{i18n>horaInicio}" />
+			    <TimePicker 
+			    	enabled="true"
+			    	value="{
+			    		path: 'viewModel>/HoraInicio',
+			    		type: 'sap.ui.model.odata.type.Time'
+			    	}"
+			    	valueFormat="HH:mm"
+					displayFormat="HH:mm" />
+			    <Label text="{i18n>fechaFin}" />
+			    <DatePicker 
+			    	enabled="true"
+			    	dateValue="{viewModel>/FechaFin}"/>
+		    	<Label text="{i18n>horaFin}" />
+			    <TimePicker 
+			    	enabled="true"
+			    	value="{
+			    		path: 'viewModel>/HoraFin',
+			    		type: 'sap.ui.model.odata.type.Time'
+			    	}"
+			    	valueFormat="HH:mm"
+					displayFormat="HH:mm" />
+				<Label text="{i18n>motivo}" />
+				<Select
+					selectedKey="{viewModel>/Motivo}"
+					items="{motivosModel>/}">
+					<core:Item key="{motivosModel>Grund}" text="{motivosModel>Grdtx}" />
+				</Select>	
+				<Label text="{i18n>tareaCompletada}" />
+				<Switch state="{viewModel>/Completada}" customTextOn="SÍ" customTextOff="NO"/>
+				<Label text="{i18n>observacion}" />	
+				<TextArea 
+			    	value="{viewModel>/Observacion}"
+			    	rows="5"
+			    	cols="40"/>
+		    </form:content>
+	    </form:SimpleForm>
+	    <buttons>
+	        <Button 
+	            text="{i18n>cancelar}"
+	            press="onCancelarEditarTarea"/>
+	        <Button 
+	            text="{i18n>aceptar}"
+	            press="onAceptarEditarTarea"/>
+	    </buttons>
+	</Dialog>
+</core:FragmentDefinition>

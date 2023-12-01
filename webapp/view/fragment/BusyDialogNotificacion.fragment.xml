@@ -1,0 +1,39 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Dialog
+		title="{i18n>notificando}"
+		contentWidth="40%"
+		beforeClose="onCloseDialogoNotificacion">
+			<List showNoData="false">
+				<NotificationListItem
+					visible="{procesoNotificacionModel>/mostrarOrden}"
+					class="sapUiTinyMargin icon"
+					title="Orden de mantenimiento"			
+					description="{procesoNotificacionModel>/description} {procesoNotificacionModel>/info}"
+					showCloseButton="false"
+					busyIndicatorDelay="0"
+					priority="{procesoNotificacionModel>/state}"
+					busy="{procesoNotificacionModel>/busy}"
+					authorPicture="{= ${procesoNotificacionModel>/icon} ? ('sap-icon://' + ${procesoNotificacionModel>/icon} ) : 'sap-icon://upload-to-cloud' }">
+				</NotificationListItem>
+				<NotificationListItem
+					visible="{procesoNotificacionModel>/mostrarRepuestos}" 
+					class="sapUiTinyMargin icon"
+					title="Repuestos"			
+					description="{procesoNotificacionModel>/descriptionMateriales} {procesoNotificacionModel>/infoMateriales}"
+					showCloseButton="false"
+					busyIndicatorDelay="0"
+					priority="{procesoNotificacionModel>/stateMateriales}"
+					busy="{procesoNotificacionModel>/busyMateriales}"
+					authorPicture="{= ${procesoNotificacionModel>/iconMateriales} ? ('sap-icon://' + ${procesoNotificacionModel>/iconMateriales} ) : 'sap-icon://upload-to-cloud' }">
+				</NotificationListItem>
+			</List>
+			<endButton>
+				<Button
+					visible="{= ${procesoNotificacionModel>/isCompleted} || ${procesoNotificacionModel>/errorOrden} }" 
+					text="{i18n>cerrar}"
+					press="onCerrarDialogoProcesoNotificacion"/>
+			</endButton>		
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,37 @@
+<core:FragmentDefinition
+    xmlns:core="sap.ui.core" 
+    xmlns="sap.m"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<List
+		width="auto"
+		class="boxShadowTable sapUiSmallMargin"
+		items="{repuestosModel>/repuestos/}"
+		includeItemInSelection="true"
+		mode="Delete"
+		noDataText="{i18n>introduzcaRepuesto}"
+		updateFinished="onUpdateFinishedRepuesto"
+		delete="onEliminarRepuesto">
+		<items>
+			<ObjectListItem
+				title="({repuestosModel>Matnr}) {repuestosModel>Maktx}"
+				number="{repuestosModel>Cantidad}"
+				numberUnit="{repuestosModel>Meins}">
+				<attributes>
+			</attributes>
+			</ObjectListItem>
+		</items>
+		<headerToolbar>
+			<Toolbar>
+				<Title text="{i18n>repuestos} ({viewModel>/numRepuestos})" level="H2" />
+				<ToolbarSpacer />
+				<Button
+					icon="sap-icon://add"
+					text="{i18n>anadirRepuestos}" 
+                    type="Emphasized"
+                    class="sapUiSmallMarginEnd"
+					tooltip="{i18n>addRepuesto}"
+					press="onNuevoRepuesto" />
+			</Toolbar>
+		</headerToolbar>
+	</List>
+</core:FragmentDefinition>

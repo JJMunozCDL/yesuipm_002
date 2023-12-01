@@ -1,0 +1,41 @@
+<core:FragmentDefinition
+    xmlns:core="sap.ui.core" 
+    xmlns="sap.m"
+    xmlns:form="sap.ui.layout.form"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Dialog
+	    title="{i18n>repuestoConsumir}">
+	    <form:SimpleForm
+		    layout="ResponsiveGridLayout"
+		    labelSpanL= "4"
+	       	labelSpanM= "4"
+	       	emptySpanL= "0"
+	       	emptySpanM= "0"	
+	       	editable="true">
+		    <form:content>
+		       <Label text="{i18n>repuesto}"/>
+		       <Input
+		       		value="{repuestosModel>/selectedItem/Matnr}"
+		       		description="{repuestosModel>/selectedItem/Maktx}"
+		       		showValueHelp="true"
+		       		change="onChangeRepuesto"
+		       		valueState="{repuestosModel>/selectedItem/MatnrState}"
+		       		enabled="{= ${viewModel>/editModeMaterialesList} !== true}"
+		       		valueHelpRequest="onValueHelpRepuesto"/>
+		       <Label text="{i18n>cantidad}"/>
+		       <Input
+		       		value="{repuestosModel>/selectedItem/Cantidad}"
+		       		maxLength="10"
+		       		description="{repuestosModel>/selectedItem/Meins}" />
+		    </form:content>
+		</form:SimpleForm>
+	    <buttons>
+	        <Button 
+	            text="{i18n>cancelar}"
+	            press="onCancelarCrearRepuesto"/>
+	        <Button 
+	            press="onAceptarCrearRepuesto"
+	            text="{i18n>aceptar}"/>
+	    </buttons>
+	</Dialog>
+</core:FragmentDefinition>

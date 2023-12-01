@@ -1,0 +1,35 @@
+<core:FragmentDefinition
+    xmlns:core="sap.ui.core" 
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout.form"
+    xmlns:html="http://www.w3.org/1999/xhtml">
+    <Dialog
+        title="{i18n>ordenMantenimiento}"
+        busyIndicatorDelay="0"
+        busy="{viewModel>/cargandoOrden}"
+        afterClose="onAfterCloseDialogoOrden"
+        type="Message">
+        <content>
+            <l:SimpleForm
+               layout="ResponsiveGridLayout"
+               labelSpanL= "4"
+               labelSpanM= "4"
+               emptySpanL= "0"
+               emptySpanM= "0"  
+               editable="true">
+                 <l:content>
+                 <Label text="{i18n>orden}"/>
+                     <Input valueState="{viewModel>/stateOrden}" value="{viewModel>/orden}"/>
+                 </l:content>
+             </l:SimpleForm>
+        </content>
+        <buttons>
+        <!--	<Button
+                press="onCancelarOrden"
+                text="{i18n>cancelar}"/> -->
+            <Button 
+                press="onAceptarOrden"
+                text="{i18n>aceptar}"/>
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

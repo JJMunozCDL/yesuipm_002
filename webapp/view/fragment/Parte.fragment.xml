@@ -1,0 +1,209 @@
+<core:FragmentDefinition
+    xmlns:core="sap.ui.core" 
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:form="sap.ui.layout.form"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+    <l:VerticalLayout width="100%">
+		<l:BlockLayout
+			keepFontSize="true">
+			<l:BlockLayoutRow>
+				<l:BlockLayoutCell
+					width="2"
+					title="{i18n>parteTrabajo}">
+					<form:SimpleForm
+					    layout="ResponsiveGridLayout"
+					    labelSpanL= "4"
+				       	labelSpanM= "4"
+				       	emptySpanL= "0"
+				       	emptySpanM= "0"	
+				       	editable="true">
+					    <form:content>
+				        	<!-- <core:Title text="{i18n>parteTrabajo}"/> -->
+				        	<Label text="{i18n>orden}" />
+				            <Input 
+				                editable="false"
+				                value="{Aufnr}"
+				                fieldWidth="25%"
+				                description="{TxtCabecera}"/>
+			                <Label text="{i18n>fechaCreacion}" />
+				            <DatePicker 
+				            	editable="false"
+			    				dateValue="{Fecha}"/>
+					        <Label text="{i18n>ubicacionTecnica}" />
+				            <Input 
+				            	fieldWidth="45%"
+				                editable="false"
+				                value="{Tplnr}"
+				                description="{Pltxt}"
+				                showValueHelp="true" 
+				                valueHelpRequest="onValueHelpUbicacionTecnica"/>
+				            <Label text="{i18n>equipo}" />
+				            <Input
+				            	fieldWidth="30%"
+				                editable="false"
+				                value="{Equnr}"
+				                description="{Eqktx}" />
+					    </form:content>
+					</form:SimpleForm>
+				</l:BlockLayoutCell>
+				<l:BlockLayoutCell
+					width="3"
+					title="{i18n>tareas} ({viewModel>/numTareas})">
+					<List busyIndicatorDelay="0"
+						busy="{viewModel>/cargandoOperaciones}"
+						items="{
+							path: 'operacionesModel>/',
+							filters: [{ path: 'Completada', operator: 'EQ', value1: false}]
+						}"
+						width="auto"
+						class="sapUiSmallMargin listTareas">
+						<CustomListItem 
+							highlight="{= ${operacionesModel>Notificada} ? 'Success' : (${operacionesModel>Error} ? 'Error' : 'Information') }"
+							busyIndicatorDelay="0"
+							busy="{viewModel>/busyNotificaciones}"
+							class="sapUiSizeCompact iconRotate">
+							<MessageStrip
+								type="Error"
+								class="sapUiSmallMarginBottom"
+								showIcon="true"
+								text="{operacionesModel>ErrorMessage}"
+								visible="{= ${operacionesModel>ErrorMessage}.length > 0 }"/>
+							<HBox width="100%" class="iconRotate2">
+								<core:Icon size="2rem" src="sap-icon://lateness"
+											class="sapUiSmallMarginBeginEnd sapUiSmallMarginTopBottom iconTest"
+											visible="{= ${
+														parts : [
+															{ path: 'operacionesModel>FechaInicio'	},
+															{ path: 'operacionesModel>FechaFin'		},
+															{ path: 'operacionesModel>HoraInicio'	},
+															{ path: 'operacionesModel>HoraFin'		}
+														],
+														formatter: '.operacionUtils.isTareaIniciada'
+													}
+												}"
+												color="{= ${operacionesModel>Notificada} ? 'Positive' : (${operacionesModel>Error} ? 'Negative' : 'Default') }" />
+									<VBox class="sapUiSmallMarginBegin" width="100%">
+										<Title text="{operacionesModel>Textol}"/>
+										<Text text="{
+											parts : [
+												{ path: 'operacionesModel>FechaInicio'	},
+												{ path: 'operacionesModel>FechaFin'		},
+												{ path: 'operacionesModel>HoraInicio'	},
+												{ path: 'operacionesModel>HoraFin'		}
+											],
+											formatter: '.operacionUtils.getTextoOperacion'
+										}"/>
+										<Text class="sapUiTinyMarginTopBottom" visible="{= ${operacionesModel>Observacion}.length > 0 ? true : false }" 
+											text="{= ${operacionesModel>Observacion}.length > 0 ? 'Observación: ' + ${operacionesModel>Observacion} : '' }"/>
+										<OverflowToolbar style="Clear" class="sapUiTinyMarginTop">
+										<Button enabled="true"
+												text="{i18n>cerrar}"
+												icon="sap-icon://decline"
+												type="Reject"
+												press="onCloseNotificacion"
+												visible="{operacionesModel>Error}" />
+										<ToolbarSpacer/>	
+											<Button 
+												enabled="false"
+												text="{i18n>completada}"
+												icon="sap-icon://accept"
+												type="Accept"
+												visible="{operacionesModel>Completada}" />
+											<Button 
+												enabled="false"
+												text="Notificación creada correctamente"
+												icon="sap-icon://accept"
+												type="Accept"
+												visible="{= ${operacionesModel>Notificada} === true }" />
+
+											<Button
+												visible="{= 
+												
+													!${
+														parts : [
+															{ path: 'operacionesModel>FechaInicio'	},
+															{ path: 'operacionesModel>FechaFin'		},
+															{ path: 'operacionesModel>HoraInicio'	},
+															{ path: 'operacionesModel>HoraFin'		}
+														],
+														formatter: '.operacionUtils.isTareaIniciada'
+													} 
+													
+													&amp;&amp;
+													
+													${
+														parts : [
+															{ path: 'operacionesModel>FechaInicio'	},
+															{ path: 'operacionesModel>FechaFin'		},
+															{ path: 'operacionesModel>HoraInicio'	},
+															{ path: 'operacionesModel>HoraFin'		}
+														],
+														formatter: '.operacionUtils.isTareaFinalizada'
+													} 
+													
+													&amp;&amp;
+													
+													!${operacionesModel>Notificada}
+												}"
+												text="{i18n>editar}"
+												icon="sap-icon://edit" 
+												type="Emphasized" 
+												press="onPressEditarTarea"/>
+											
+											<Button 
+												busyIndicatorDelay="0"
+												visible="{= !${
+													parts : [
+														{ path: 'operacionesModel>FechaInicio'	},
+														{ path: 'operacionesModel>FechaFin'		},
+														{ path: 'operacionesModel>HoraInicio'	},
+														{ path: 'operacionesModel>HoraFin'		}
+													],
+													formatter: '.operacionUtils.isTareaFinalizada'
+												} }"
+												text="{= ${
+													parts : [
+														{ path: 'operacionesModel>FechaInicio'	},
+														{ path: 'operacionesModel>FechaFin'		},
+														{ path: 'operacionesModel>HoraInicio'	},
+														{ path: 'operacionesModel>HoraFin'		}
+													],
+													formatter: '.operacionUtils.isTareaIniciada'
+												} ? ${i18n>concluirTrabajo} : ${i18n>iniciarTrabajo} }"
+												type="{= ${
+														parts : [
+															{ path: 'operacionesModel>FechaInicio'	},
+															{ path: 'operacionesModel>FechaFin'		},
+															{ path: 'operacionesModel>HoraInicio'	},
+															{ path: 'operacionesModel>HoraFin'		}
+														],
+														formatter: '.operacionUtils.isTareaIniciada'
+													} ? 'Reject' : 'Accept' }"
+												icon="{= ${viewModel>/ordenIniciada} ? 'sap-icon://stop' : 'sap-icon://add-process' }"
+												press="onHandleTrabajo" />
+									</OverflowToolbar>
+								</VBox>
+							</HBox>
+							<customData>
+								<core:CustomData
+								key="icon-loading"
+								value=""
+								writeToDom="{= ${
+										parts : [
+											{ path: 'operacionesModel>FechaInicio'	},
+											{ path: 'operacionesModel>FechaFin'		},
+											{ path: 'operacionesModel>HoraInicio'	},
+											{ path: 'operacionesModel>HoraFin'		}
+										],
+										formatter: '.operacionUtils.isTareaIniciada'
+									}
+								}" />
+							</customData>
+						</CustomListItem>
+					</List>
+				</l:BlockLayoutCell>
+			</l:BlockLayoutRow>
+		</l:BlockLayout>
+	</l:VerticalLayout>
+</core:FragmentDefinition>

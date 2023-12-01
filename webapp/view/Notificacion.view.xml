@@ -1,0 +1,83 @@
+<core:View 
+    xmlns:core="sap.ui.core" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns:layout="sap.ui.layout"
+	xmlns:form="sap.ui.layout.form"
+	xmlns:u="sap.ui.unified"
+	xmlns:fb="sap.ui.comp.filterbar"    
+	xmlns="sap.m"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    busyIndicatorDelay="0"
+	controllerName="es.cdl.yesui5pm002.controller.Notificacion">
+	<App id="NotificarOrdenApp"
+		 backgroundColor="White">
+		<pages>
+<!--			<MessagePage 
+				showNavButton="true"
+				busyIndicatorDelay="0"
+				busy="{viewModel>/cargandoNotificacionTemporal}"
+				navButtonPress="onNavBack"
+				visible="{= !${viewModel>/ordenCargada} }"	
+			/>-->
+			<Page
+				visible="true"  
+			    showNavButton="true"
+				showHeader="false"
+			    navButtonPress="onNavBack"
+			    busyIndicatorDelay="0"
+				busy="{viewModel>/cargandoOrden}"
+			    title="{i18n>notificacionParteTrabajo}">
+			    <ObjectHeader
+			    	visible="false"
+			    	backgroundDesign="Solid"
+					title="{TxtCabecera}"	
+					number="{Aufnr}"
+					numberUnit="{ClaseOrden}" >
+				</ObjectHeader>
+			    <IconTabBar	    	
+					selectedKey="{viewModel>/firstTab}"
+					expandable="false">
+					<items>
+						<IconTabFilter
+							key="parte"
+							icon="sap-icon://activity-2"
+							text="{i18n>parte}">
+							<core:Fragment fragmentName="es.cdl.yesui5pm002.view.fragment.Parte" type="XML"/>
+						</IconTabFilter>
+						<IconTabFilter
+							icon="sap-icon://add-equipment"
+							text="{i18n>repuestos}">
+							<core:Fragment fragmentName="es.cdl.yesui5pm002.view.fragment.Repuestos" type="XML"/>
+						</IconTabFilter>	
+						<IconTabFilter
+							icon="sap-icon://history"
+							text="{i18n>historico}">
+							<core:Fragment fragmentName="es.cdl.yesui5pm002.view.fragment.Historico" type="XML"/>
+						</IconTabFilter>
+						<IconTabFilter
+							icon="sap-icon://attachment"
+							visible="false"
+							text="{i18n>anexos}">
+							<core:Fragment fragmentName="es.cdl.yesui5pm002.view.fragment.Anexos" type="XML"/>
+						</IconTabFilter>			
+					</items>
+				</IconTabBar>	
+				<footer>
+					<Toolbar>
+						<Button 
+							icon="sap-icon://decline"
+							press="onPressFinalizarOrden"
+							type="Reject"
+							text="{i18n>finalizarOrden}"/>
+						<ToolbarSpacer/>
+						<Button 
+							icon="sap-icon://save"
+							press="onPressNotificar"
+							type="Emphasized"
+							text="{i18n>notificar}"/>
+					</Toolbar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</core:View>

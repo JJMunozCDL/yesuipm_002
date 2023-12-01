@@ -1,0 +1,75 @@
+<core:FragmentDefinition
+    xmlns:core="sap.ui.core" 
+    xmlns="sap.m"
+    xmlns:form="sap.ui.layout.form"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	    <Dialog
+	    	class="sapUiNoContentPadding"
+			title="{i18n>repuestos}">
+			<customHeader>
+				<Toolbar
+					visible="{= ${Equnr} ? true : false }">
+					<ToolbarSpacer/>
+					<SegmentedButton
+						selectedKey="{viewModel>/selectedKeyRepuestos}"
+						selectionChange="onSelectionChangeRepuestos">
+						<items>
+							<SegmentedButtonItem 
+								icon="sap-icon://machine"
+								text="Rep. Equipo" 
+								key="repEquipo" />
+							<SegmentedButtonItem 
+								icon="sap-icon://list"
+								text="Todos"
+								key="todos" />
+						</items>
+					</SegmentedButton>
+					<ToolbarSpacer/>
+				</Toolbar>
+			</customHeader>
+			<subHeader>
+				<Toolbar>
+					<SearchField
+						search="onSearchRepuesto"
+						width="100%" />
+				</Toolbar>
+			</subHeader>
+			<content>
+				<List 
+					id="listRepuestos"
+					itemPress="onSelectRepuesto"
+					mode="SingleSelectMaster"
+					busyIndicatorDelay="0"
+	    			busy="{viewModel>/cargandoRepuestos}"
+					items="{
+						path: 'repuestosMatchCodeModel>/'
+					}">
+					<ObjectListItem
+						type="Active"
+						title="({repuestosMatchCodeModel>Matnr}) {repuestosMatchCodeModel>Maktx}"
+						number="{
+							path: 'repuestosMatchCodeModel>Labst',
+							type: 'sap.ui.model.odata.type.Decimal'
+						}"
+						numberUnit="{repuestosMatchCodeModel>Meins}">
+						<attributes>
+							<ObjectAttribute text="({repuestosMatchCodeModel>Lgort}) {repuestosMatchCodeModel>Lgobe}" />
+						</attributes>
+						<firstStatus>
+		<!-- 					<ObjectStatus
+								text="{
+									path: 'repuestosMatchCodeModel>Verpr',
+									type: 'sap.ui.model.type.Float'
+								} EUR"
+								state="None" /> -->
+						</firstStatus>
+					</ObjectListItem>
+				</List>
+			</content>
+			<endButton>
+				<Button 
+					text="{i18n>cancelar}"
+					press="onPressCancelarMathCodeRepuestos" />
+			</endButton>
+		</Dialog>
+</core:FragmentDefinition>

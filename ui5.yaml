@@ -1,0 +1,31 @@
+specVersion: "3.1"
+metadata:
+  name: es.cdl.yesui5pm002
+type: application
+server:
+  customMiddleware:
+    - name: fiori-tools-proxy
+      afterMiddleware: compression
+      configuration:
+        ignoreCertError: false
+        ui5:
+          path:
+            - /resources
+            - /test-resources
+          url: https://ui5.sap.com
+          version: 1.108.18
+        backend:
+          - path: /sap
+            url: http://cdlasgw01.cdl.es:8000
+            client: '100'
+    - name: fiori-tools-appreload
+      afterMiddleware: compression
+      configuration:
+        port: 35729
+        path: webapp
+        delay: 300
+    - name: fiori-tools-preview
+      afterMiddleware: fiori-tools-appreload
+      configuration:
+        component: es.cdl.yesui5pm002
+        ui5Theme: sap_horizon

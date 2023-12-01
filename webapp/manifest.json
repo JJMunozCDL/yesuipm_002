@@ -1,0 +1,111 @@
+{
+    "_version": "1.8.0",
+    "sap.app": {
+        "_version": "1.1.0",
+        "id": "es.cdl.yesui5pm002",
+        "type": "application",
+        "resources": "resources.json",
+        "i18n": "i18n/i18n.properties",
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "applicationVersion": {
+            "version": "0.1"
+        },
+        "dataSources": {
+            "YESUI5PM_SRV": {
+                "uri": "/sap/opu/odata/sap/YESUI5PM_SRV",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/metadata.xml",
+                    "odataVersion": "2.0",
+                    "useBatch": false
+                }
+            }
+        },
+        "sourceTemplate": {
+            "id": "servicecatalog.connectivityComponentForManifest",
+            "version": "0.0.0",
+            "toolsId": "206bebdd-2079-4986-8bda-dffd5e305c3d"
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        },
+        "supportedThemes": [
+            "sap_hcb",
+            "sap_belize"
+        ]
+    },
+    "sap.ui5": {
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "rootView": "es.cdl.yesui5pm002.view.Notificacion",
+        "dependencies": {
+            "minUI5Version": "1.108.18",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.ui.layout": {}
+            }
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "es.cdl.yesui5pm002.i18n.i18n"
+                }
+            },
+            "": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "Request"
+                },
+                "dataSource": "YESUI5PM_SRV",
+                "preload": true
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "viewPath": "es.cdl.yesui5pm002.view",
+                "controlId": "NotificarOrdenApp",
+                "controlAggregation": "pages"
+            },
+            "routes": [
+                {
+                    "pattern": "NotificarOrden/",
+                    "name": "NotificarOrden",
+                    "target": "notificarOrden"
+                }
+            ],
+            "targets": {
+                "notificarOrden": {
+                    "viewName": "Notificacion",
+                    "viewId": "notificacion",
+                    "viewLevel": 1
+                }
+            }
+        }
+    },
+    "sap.platform.abap": {
+        "uri": "/sap/bc/ui5_ui5/sap/zspmu402/webapp",
+        "_version": "1.1.0"
+    }
+}

@@ -1,0 +1,61 @@
+<core:FragmentDefinition
+    xmlns:core="sap.ui.core" 
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	 <l:VerticalLayout width="100%">
+		<l:BlockLayout
+			keepFontSize="true">
+			<l:BlockLayoutRow>
+				<l:BlockLayoutCell
+					title="{i18n>notificaciones}">
+						<List
+							width="auto"
+							class=""
+							noDataText="{i18n>sinNotificaciones}"
+							items="{notificacionesModel>/}"
+							includeItemInSelection="true">
+							<items>
+								<NotificationListItem
+									showCloseButton="false"
+									title="{notificacionesModel>OperationTxt}"
+									description="{notificacionesModel>TiniLines}"
+									datetime="{notificacionesModel>ActWork} Minutos"
+									authorName="{notificacionesModel>Name}">
+								</NotificationListItem>
+							</items>
+						</List>
+					</l:BlockLayoutCell>
+					<l:BlockLayoutCell
+						title="{i18n>consumoRepuestos}">
+						<List
+							width="auto"
+							noDataText="{i18n>sinConsumos}"
+							class="boxShadowTable"
+							items="{repuestosHistoricoModel>/}"
+							includeItemInSelection="true">
+							<items>
+								<ObjectListItem
+									title="({repuestosHistoricoModel>Matnr}) {repuestosHistoricoModel>Maktx}"
+									number="{
+										path: 'repuestosHistoricoModel>Labst',
+										type: 'sap.ui.model.odata.type.Decimal'
+									}"
+									numberUnit="{repuestosHistoricoModel>Meins}">
+									<attributes>
+										<ObjectAttribute text="{
+															parts : [
+																{ path: 'repuestosHistoricoModel>Fecha'	},
+																{ path: 'repuestosHistoricoModel>Hora'		}
+															],
+															formatter: '.operacionUtils.formatDateTime'
+														}"/>
+									</attributes>
+								</ObjectListItem>
+							</items>
+						</List>
+					</l:BlockLayoutCell>
+				</l:BlockLayoutRow>
+		</l:BlockLayout>
+	</l:VerticalLayout>
+</core:FragmentDefinition>
