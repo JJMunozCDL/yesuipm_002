@@ -13,10 +13,9 @@ builder:
     - name: deploy-to-abap
       afterTask: generateCachebusterInfo
       configuration:
-        log: 5
         target:
-          url: http://cdlasgw01.cdl.es:8000
-          client: "100"
+          destination: CDL
+          url: http://172.30.6.51:8000
         app:
           name: YESUI5PM_002
           description: Notificar mantenimiento

@@ -1,35 +1,39 @@
 {
-  "name": "es.cdl.yesui5pm002",
-  "version": "0.0.1",
-  "description": "",
-  "devDependencies": {
-    "@sap/ui5-builder-webide-extension": "1.0.x",
-    "@sap/ux-ui5-tooling": "^1.11.5",
-    "@ui5/cli": "^3.0.0",
-    "rimraf": "3.0.2"
-  },
-  "scripts": {
-    "build_old": "ui5 build --clean-dest --include-task=generateManifestBundle generateCachebusterInfo",
-    "start": "fiori run --open \"test/flpSandbox.html?sap-ui-xx-viewCache=false#app-tile\"",
-    "start-local": "fiori run --config ./ui5-local.yaml --open \"test/flpSandboxMockServer.html?sap-ui-xx-viewCache=false#app-tile\"",
-    "start-noflp": "fiori run --open \"index.html?sap-ui-xx-viewCache=false\"",
-    "start-variants-management": "fiori run --open \"preview.html?sap-ui-xx-viewCache=false&fiori-tools-rta-mode=true&sap-ui-rta-skip-flex-validation=true#preview-app\"",
-    "build": "ui5 build -a --clean-dest --include-task=generateCachebusterInfo",
-    "deploy": "npm run build && fiori deploy --config ui5-deploy.yaml && rimraf archive.zip",
-    "deploy-config": "fiori add deploy-config",
-    "start-mock": "fiori run --open \"test/flpSandboxMockServer.html?sap-ui-xx-viewCache=false#app-tile\""
-  },
-  "ui5": {
-    "dependencies": [
-      "@sap/ui5-builder-webide-extension"
-    ]
-  },
-  "private": true,
-  "sapuxLayer": "CUSTOMER_BASE",
-  "keywords": [
-    "ui5",
-    "openui5",
-    "sapui5"
-  ],
-  "main": "webapp/index.html"
+    "name": "es.cdl.yesui5pm002",
+    "version": "0.0.1",
+    "description": "",
+    "devDependencies": {
+        "@sap/ui5-builder-webide-extension": "1.0.x",
+        "@sap/ux-ui5-tooling": "^1.11.5",
+        "@ui5/cli": "^3.0.0",
+        "rimraf": "3.0.2",
+        "ui5-task-flatten-library": "0.2.5"
+    },
+    "scripts": {
+        "build_old": "ui5 build --clean-dest --include-task=generateManifestBundle generateCachebusterInfo",
+        "start": "fiori run --open \"test/flpSandbox.html?sap-ui-xx-viewCache=false#app-tile\"",
+        "start-local": "fiori run --config ./ui5-local.yaml --open \"test/flpSandboxMockServer.html?sap-ui-xx-viewCache=false#app-tile\"",
+        "start-noflp": "fiori run --open \"index.html?sap-ui-xx-viewCache=false\"",
+        "start-variants-management": "fiori run --open \"preview.html?sap-ui-xx-viewCache=false&fiori-tools-rta-mode=true&sap-ui-rta-skip-flex-validation=true#preview-app\"",
+        "build": "ui5 build -a --clean-dest --include-task=generateCachebusterInfo",
+        "deploy": "npm run build && fiori deploy --config ui5-deploy.yaml && rimraf archive.zip",
+        "deploy-config": "fiori add deploy-config",
+        "start-mock": "fiori run --open \"test/flpSandboxMockServer.html?sap-ui-xx-viewCache=false#app-tile\"",
+        "undeploy": "fiori undeploy --config ui5-deploy.yaml",
+        "deploy-test": "npm run build && fiori deploy --config ui5-deploy.yaml --testMode true"
+    },
+    "ui5": {
+        "dependencies": [
+            "@sap/ui5-builder-webide-extension",
+            "ui5-task-flatten-library"
+        ]
+    },
+    "private": true,
+    "sapuxLayer": "CUSTOMER_BASE",
+    "keywords": [
+        "ui5",
+        "openui5",
+        "sapui5"
+    ],
+    "main": "webapp/index.html"
 }
