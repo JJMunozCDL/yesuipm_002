@@ -717,18 +717,18 @@
 		 		return;
 		 	}
 		 	
-		 	/* Creamos el Entry de los repuestos */
+
 		 	for (var i = oRepuestos.length - 1; i >= 0; i--) {
 		 		var oRepuesto = oRepuestos[i];
 		 		oModel.createEntry("/NotificarRepuestosSet",{
 					properties: {
 						Aufnr: sAufnr,
 						Werks: oRepuesto.Werks,
-						Matnr: oRepuesto.Matnr,		// Material
-						Lgfsb: oRepuesto.Lgort, 	// Almacen
-						Erfme: oRepuesto.Meins, 	// Unidad 
-						Lgpbe: "", 					// Ubicación 
-						Menge: oRepuesto.Cantidad,  // Cantidad
+						Matnr: oRepuesto.Matnr,		
+						Lgfsb: oRepuesto.Lgort, 	
+						Erfme: oRepuesto.Meins, 	
+						Lgpbe: "", 					
+						Menge: oRepuesto.Cantidad,  
 					}
 				});
 		 	}		 	
