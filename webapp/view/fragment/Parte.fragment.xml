@@ -59,7 +59,7 @@
 						width="auto"
 						class="sapUiSmallMargin listTareas">
 						<CustomListItem 
-							highlight="{= ${operacionesModel>Notificada} ? 'Success' : (${operacionesModel>Error} ? 'Error' : 'Information') }"
+							highlight="{= ${operacionesModel>Notificada} ? 'Success' : (${operacionesModel>Error} ? 'Error' : (${operacionesModel>Notificable} ? 'Information' : 'None')) }"
 							busyIndicatorDelay="0"
 							busy="{viewModel>/busyNotificaciones}"
 							class="sapUiSizeCompact iconRotate">
@@ -83,7 +83,11 @@
 													}
 												}"
 												color="{= ${operacionesModel>Notificada} ? 'Positive' : (${operacionesModel>Error} ? 'Negative' : 'Default') }" />
-									<VBox class="sapUiSmallMarginBegin" width="100%">
+									<HBox visible="{= !${operacionesModel>Notificable}}">
+										<core:Icon src="sap-icon://navigation-right-arrow" color="#0070f2" size="2rem" class="sapUiSmallMarginEnd"/>
+										<Text text="{operacionesModel>Textol}"/>
+									</HBox>
+									<VBox visible="{operacionesModel>Notificable}" class="sapUiSmallMarginBegin" width="100%">
 										<Title text="{operacionesModel>Textol}"/>
 										<Text text="{
 											parts : [
@@ -158,9 +162,10 @@
 														{ path: 'operacionesModel>FechaInicio'	},
 														{ path: 'operacionesModel>FechaFin'		},
 														{ path: 'operacionesModel>HoraInicio'	},
-														{ path: 'operacionesModel>HoraFin'		}
+														{ path: 'operacionesModel>HoraFin'		},
+														{ path: 'operacionesModel>Notificable'}
 													],
-													formatter: '.operacionUtils.isTareaFinalizada'
+													formatter: '.operacionUtils.handleJobVisible'
 												} }"
 												text="{= ${
 													parts : [

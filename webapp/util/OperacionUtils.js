@@ -64,6 +64,13 @@ sap.ui.define([
 				}
 				return false;
 			},
+
+			handleJobVisible : function(oFechaInicio, oFechaFin, oHoraInicio, oHoraFin, bNotificable){
+				if((oFechaInicio && oFechaFin && oHoraInicio && oHoraFin ) || (!bNotificable)){
+					return true;
+				}
+				return false;
+			}
 						
 		}
 });

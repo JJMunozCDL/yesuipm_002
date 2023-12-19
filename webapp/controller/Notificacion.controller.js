@@ -205,7 +205,7 @@
 							ExecFinDate 	: oFechaFin,
 							ExecFinTime 	: oOperacion.HoraFin,					
 							TiniLines 		: oOperacion.Observacion,
-							Grund			: oOperacion.Motivo,
+							Grund			: "",//oOperacion.Motivo,
 							Werks			: sWerks
 						},
 						success: function(oData, oResponse){
@@ -635,7 +635,7 @@
 					method: 'POST',
 					urlParameters: {
 							Pernr: this.sPernr,
-							 Aufnr: oOperacion.Orden,
+							Aufnr: oOperacion.Orden,
 							Vornr: oOperacion.Activity,
 							FechaFin: oFechaFin,
 							HoraFin: oTimeFin 
@@ -670,8 +670,16 @@
 					method: 'POST',
 					urlParameters: {
 							Pernr: this.sPernr,
-							 Aufnr: oOperacion.Orden,
+							Aufnr: oOperacion.Orden,
 							Vornr: oOperacion.Activity,
+							Tplnr : "",
+							Equnr : "",
+							Descripcion : "",
+							Beber 		: "",
+							Peticionario : "", 
+							Destinatario : "",
+							Msaus : false,
+							Sintomas : ""
 						/*	FechaIni: oFecha,
 							HoraIni: oHoraIni */
 					},
@@ -879,7 +887,7 @@
 					var iNumTareas = 0;	
 
 					for (var i = 0; i < oOperaciones.length; i++) {
-						if(!oOperaciones[i].Completada) iNumTareas += 1;
+						if(!oOperaciones[i].Completada && oOperaciones[i].Notificable ) iNumTareas += 1;
 						
 						var bExiste = false;
 						
