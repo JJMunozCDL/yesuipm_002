@@ -20,7 +20,15 @@
 									showCloseButton="false"
 									title="{notificacionesModel>OperationTxt}"
 									description="{notificacionesModel>TiniLines}"
-									datetime="{notificacionesModel>ActWork} Minutos"
+									datetime="{
+															parts : [
+																{ path: 'notificacionesModel>ExecStartDate'	},
+																{ path: 'notificacionesModel>ExecStartTime'	},
+																{ path: 'notificacionesModel>ExecFinDate'	},
+																{ path: 'notificacionesModel>ExecFinTime'	}
+															],
+															formatter: '.operacionUtils.formatIniFin'
+														} - {notificacionesModel>ActWork} Min."
 									authorName="{notificacionesModel>Name}">
 								</NotificationListItem>
 							</items>

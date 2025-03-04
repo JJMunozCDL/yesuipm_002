@@ -15,13 +15,14 @@
 						selectionChange="onSelectionChangeRepuestos">
 						<items>
 							<SegmentedButtonItem 
-								icon="sap-icon://machine"
-								text="Rep. Equipo" 
-								key="repEquipo" />
-							<SegmentedButtonItem 
 								icon="sap-icon://list"
 								text="Todos"
 								key="todos" />
+							<SegmentedButtonItem 
+								icon="sap-icon://machine"
+								text="Rep. Equipo" 
+								key="repEquipo" />
+
 						</items>
 					</SegmentedButton>
 					<ToolbarSpacer/>

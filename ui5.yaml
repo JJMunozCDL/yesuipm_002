@@ -16,8 +16,10 @@ server:
           version: 1.108.18
         backend:
           - path: /sap
-            url: http://cdlasgw01.cdl.es:8000
+            url: http://172.30.6.51:8000
             client: '100'
+            destination: CDL
+            authenticationType: NoAuthentication
     - name: fiori-tools-appreload
       afterMiddleware: compression
       configuration:

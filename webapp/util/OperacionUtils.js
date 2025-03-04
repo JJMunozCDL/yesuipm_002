@@ -46,6 +46,11 @@ sap.ui.define([
 
 			},
 
+			formatIniFin: function (dIni, tIni, dFin, tFin){
+				var oTime = new Time();
+				return moment(dIni).format('ll')+" "+oTime.formatValue(tIni, "string")+" - "+moment(dFin).format('ll')+" "+oTime.formatValue(tFin, "string");
+			},	
+
 			formatDateTime: function(oFecha, oHora){
 				var oTime = new Time();
 				return ""+moment(oFecha).format('ll')+" "+oTime.formatValue(oHora, "string");

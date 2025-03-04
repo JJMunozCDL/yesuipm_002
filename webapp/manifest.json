@@ -18,8 +18,7 @@
                 "settings": {
                     "annotations": [],
                     "localUri": "localService/metadata.xml",
-                    "odataVersion": "2.0",
-                    "useBatch": false
+                    "odataVersion": "2.0"
                 }
             }
         },

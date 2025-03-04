@@ -68,6 +68,7 @@
 							icon="sap-icon://decline"
 							press="onPressFinalizarOrden"
 							type="Reject"
+							visible="false"
 							text="{i18n>finalizarOrden}"/>
 						<ToolbarSpacer/>
 						<Button 

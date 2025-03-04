@@ -27,8 +27,10 @@ server:
             url:
             client:
           - path: /sap/opu/odata/sap/YESUI5PM_SRV
-            url: http://cdlasgw01.cdl.es:8000
+            url: http://172.30.6.51:8000
             client: '100'
+            destination: CDL
+            authenticationType: NoAuthentication
     - name: fiori-tools-appreload
       afterMiddleware: compression
       configuration:

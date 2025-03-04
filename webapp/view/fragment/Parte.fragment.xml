@@ -44,6 +44,39 @@
 				                editable="false"
 				                value="{Equnr}"
 				                description="{Eqktx}" />
+							<!-- DETALLES AVERIA -->
+							<Title  text="Detalles avería" titleStyle="H5" class="sapUiMediumMarginTop sapUiSmallMarginBottom" 
+								visible="{= ${Auart} === 'YMPC'}" >
+								<layoutData>
+									<l:GridData  linebreak="true"/>
+								</layoutData>   
+							</Title>
+							<Label text="{i18n>PARTE_DAÑADA}" visible="{= ${Auart} === 'YMPC'}" />
+							<Text visible="{= ${Auart} === 'YMPC'}" text="{ParteDan}"/>
+							<Label text="{i18n>CAUSA}" visible="{= ${Auart} === 'YMPC'}"/>
+							<Text visible="{= ${Auart} === 'YMPC'}" text="{Causa}"/>					
+							<!-- <Select items="{catCausaModel>/}"
+								id="idSelectCausas"
+								visible="{= ${Auart} === 'YMPC'}"
+								showSecondaryValues="true"
+								enabled="{= !${viewModel>/ordenIniciada} }"
+								forceSelection="false" selectedKey="{nuevaOrdenModel>/Causa}">
+								<core:ListItem key="{catCausaModel>Code}" text="{catCausaModel>Txt}" additionalText="{catCausaModel>Code}" />
+                        	</Select> -->
+							<Label text="{i18n>CODIFICACION}" visible="{= ${Auart} === 'YMPC'}"/>
+<!-- 							<Select
+								items="{catTipoModel>/}" 
+								visible="{= ${Auart} === 'YMPC'}"
+					        	forceSelection="false"
+								id="idSelectTipo"
+								enabled="{= !${viewModel>/ordenIniciada} }"
+					        	showSecondaryValues="true"
+					        	selectedKey="{nuevaOrdenModel>/Tipologia}">
+					        	<core:ListItem key="{catTipoModel>Code}" text="{catTipoModel>Txt}" additionalText="{catTipoModel>Code}"/>
+					        </Select> -->
+							<Text visible="{= ${Auart} === 'YMPC'}" text="{Codificacion}"/>
+							<Label text="{i18n>SINTOMAS_AV}" visible="{= ${Auart} === 'YMPC'}"/>
+							<Text visible="{= ${Auart} === 'YMPC'}" text="{SintomaAv}"/>
 					    </form:content>
 					</form:SimpleForm>
 				</l:BlockLayoutCell>
@@ -88,7 +121,7 @@
 										<Text text="{operacionesModel>Textol}"/>
 									</HBox>
 									<VBox visible="{operacionesModel>Notificable}" class="sapUiSmallMarginBegin" width="100%">
-										<Title text="{operacionesModel>Textol}"/>
+										<Title text="{operacionesModel>Textol}" wrapping="true"/>
 										<Text text="{
 											parts : [
 												{ path: 'operacionesModel>FechaInicio'	},

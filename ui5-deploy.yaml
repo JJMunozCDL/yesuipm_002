@@ -20,6 +20,6 @@ builder:
           name: YESUI5PM_002
           description: Notificar mantenimiento
           package: YESUI5PM
-          transport: GW3K900240
+          transport: GW3K900350
         exclude:
           - /test/

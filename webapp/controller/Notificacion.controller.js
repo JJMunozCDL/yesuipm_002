@@ -51,17 +51,14 @@
 			this.getView().addDependent(this._oDialogoOrden);
 			this.getView().addDependent(this._oDialogoCrearRepuesto);
 			this.getView().addDependent(this._oBusyDialogNotificacion);
-
-		
-
 		},
 		
 		onAfterRendering:function(){
 			var oCData = this.getOwnerComponent().getComponentData();
 			this._resetModels();
-			//this._setOrden("800863");
-			
-			//return;
+ 			this._setOrden("804062");
+			this.sPernr = '00000208';
+			return; 
 			if (oCData){
 
 				if (oCData.startupParameters.Pernr !== undefined){
@@ -453,11 +450,11 @@
 			}
 
 			var oViewModel = this.getModel('viewModel');
-			oViewModel.setProperty("/selectedKeyRepuestos", "repEquipo");
+			oViewModel.setProperty("/selectedKeyRepuestos", "todos");
 			
 			var oBindingContext = this.getView().getBindingContext();
 			
-			this._getRepuestos(oBindingContext.getProperty("Equnr"));	
+			this._getRepuestos();	
 						
 			this._oMatchCodeRepuestos.open();
 
@@ -587,7 +584,7 @@
 			this._oBusyDialogNotificacion.close();
 			
 			if(!oProcesoNotificacionModel.getProperty("/errorOrden")){
-				this.onCerrarOrden();
+				//this.onCerrarOrden();
 			}
 			
 			this._resetProcesoNotificacion();
@@ -679,7 +676,11 @@
 							Peticionario : "", 
 							Destinatario : "",
 							Msaus : false,
-							Sintomas : ""
+							Sintomas : "",
+							CauseCode : "",
+							CauseCodegrp : "",
+							Code : "",
+							Codegrp : ""
 						/*	FechaIni: oFecha,
 							HoraIni: oHoraIni */
 					},
@@ -923,7 +924,7 @@
 					oOperacionesModel.setProperty("/", oOperaciones);
 					
 					if(iNumTareas === 0){
-						this.onCerrarOrden();
+						//this.onCerrarOrden();
 					}
 					
 				}.bind(this)

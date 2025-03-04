@@ -50,7 +50,7 @@
 				</Select>	
 				<Label text="{i18n>tareaCompletada}" />
 				<Switch state="{viewModel>/Completada}" customTextOn="SÍ" customTextOff="NO"/>
-				<Label text="{i18n>observacion}" />	
+				<Label text="{i18n>tareas_realizadas}" />	
 				<TextArea 
 			    	value="{viewModel>/Observacion}"
 			    	rows="5"
